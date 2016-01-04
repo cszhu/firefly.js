@@ -1,24 +1,23 @@
 function firefly(id, num, sz, color) {
-  createCanvas(id);
-  draw(num, sz, color);
-}
-
-function createCanvas(id) {
   var canvas = document.createElement('canvas');
   div = document.getElementById(id);
+  div.style.position = "relative";
   console.log(id);
   console.log(div);
   canvas.id = "fireflyLayer";
   canvas.height = div.offsetHeight;
   canvas.width = div.offsetWidth;
+  var h = canvas.height;
+  var w = canvas.width;
   canvas.style.position = "absolute";
   canvas.style.zIndex = 100;
   canvas.style.left = "0";
   canvas.style.top = "0";
   div.appendChild(canvas);
+  draw(num, sz, color, h, w);
 }
 
-function draw(num, sz, color) {
+function draw(num, sz, color, h, w) {
   var mainCanvas = document.getElementById("fireflyLayer");
   var mainContext = mainCanvas.getContext('2d');
   var circles = [];
@@ -52,8 +51,8 @@ function draw(num, sz, color) {
 
     mainContext.beginPath();
 
-    mainContext.arc(this.xPos + Math.cos(this.counter / 700) * this.radius,
-      this.yPos + Math.sin(this.counter / 700) * this.radius,
+    mainContext.arc(this.xPos + Math.cos(this.counter / w) * this.radius,
+      this.yPos + Math.sin(this.counter / h) * this.radius,
       this.width,
       0,
       Math.PI * 2,
@@ -65,8 +64,8 @@ function draw(num, sz, color) {
     var r = parseInt(hex.substring(0,2), 16);
     var g = parseInt(hex.substring(2,4), 16);
     var b = parseInt(hex.substring(4,6), 16);
-    mainContext.fillStyle = 'rgba(0, 0, 0, ' + this.opacity + ')';
-    // mainContext.fillStyle = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + this.opacity + ')';
+    // mainContext.fillStyle = 'rgba(0, 0, 0, ' + this.opacity + ')';
+    mainContext.fillStyle = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + this.opacity + ')';
     mainContext.fill();
   };
 
@@ -79,8 +78,8 @@ function draw(num, sz, color) {
 
   function drawCircles() {
     for (var i = 0; i < num; i++) {
-      var randomX = Math.round(-200 + Math.random() * 700);
-      var randomY = Math.round(-200 + Math.random() * 700);
+      var randomX = Math.round(Math.random() * w);
+      var randomY = Math.round(Math.random() * h);
       var speed = .2 + Math.random() * 3;
       var size = Math.random() * szNum;
 
@@ -92,7 +91,7 @@ function draw(num, sz, color) {
   drawCircles();
 
   function draw() {
-    mainContext.clearRect(0, 0, 500, 500);
+    mainContext.clearRect(0, 0, w, h);
 
     for (var i = 0; i < circles.length; i++) {
       var myCircle = circles[i];
