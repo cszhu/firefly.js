@@ -2,8 +2,7 @@
 Pretty firefly particle effect on your webpage using JS / Canvas.
 
 ### Customization
-You can customize your firefly particles in several ways by calling the `firefly` function. This function takes in 4 arguments.
-Here is an example of using the function.
+You can customize your firefly particles in several ways by calling the `firefly` function. This function takes in 4 arguments. Here is an example:
 
 `firefly("landingDiv", 55, "medium", "#FFFFFF");`
 
@@ -16,7 +15,7 @@ Here is an example of using the function.
   * big
 * #FFFFFF is the color of the fireflies. It takes in hex colors.
 
-Note you must use quotations!
+Note you must use quotations for it to work :) 
 
 ### How To Use
 Put it in your HTML page with some `<style>` tags.
@@ -34,6 +33,3 @@ window.onload = function() {
   firefly("id", #, "big", "#003399"); 
 };
 ```
-
-### How It Works
-It makes a new canvas object anad overlays it onto your div!
