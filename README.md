@@ -1,5 +1,5 @@
 # firefly.js
-Pretty firefly particle effect on your webpage using JS / Canvas.
+Pretty firefly particle effect on your webpage using JS / Canvas. [Here's a live demo](http://cszhu.me/firefly).
 
 ### Customization
 You can customize your firefly particles in several ways by calling the `firefly` function. This function takes in 4 arguments. Here is an example:
