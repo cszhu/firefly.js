@@ -1,26 +1,30 @@
 function firefly(id, num, sz, color) {
-  var canvas = document.createElement('canvas');
-  div = document.getElementById(id);
-  div.style.position = "relative";
-  console.log(id);
-  console.log(div);
-  canvas.id = "fireflyLayer";
-  canvas.height = div.offsetHeight;
-  canvas.width = div.offsetWidth;
+   if (document.getElementById("fireflyLayer") != null) {
+    var canvas = document.getElementById("fireflyLayer");
+  } else {
+    var canvas = document.createElement('canvas');
+    div = document.getElementById(id);
+    div.style.position = "relative";
+    canvas.id = "fireflyLayer";
+    canvas.height = div.offsetHeight;
+    canvas.width = div.offsetWidth;
+    canvas.style.position = "absolute";
+    canvas.style.zIndex = 100;
+    canvas.style.left = "0";
+    canvas.style.top = "0";
+    div.appendChild(canvas);
+  }
   var h = canvas.height;
   var w = canvas.width;
-  canvas.style.position = "absolute";
-  canvas.style.zIndex = 100;
-  canvas.style.left = "0";
-  canvas.style.top = "0";
-  div.appendChild(canvas);
-  draw(num, sz, color, h, w);
+  sketch(num, sz, color, h, w);
 }
 
-function draw(num, sz, color, h, w) {
+function sketch(num, sz, color, h, w) {
   var mainCanvas = document.getElementById("fireflyLayer");
   var mainContext = mainCanvas.getContext('2d');
-  var circles = [];
+  mainContext.clearRect(0, 0, w, h);
+
+  var circles = new Array();
 
   var requestAnimationFrame = window.requestAnimationFrame ||
     window.mozRequestAnimationFrame ||
@@ -64,7 +68,6 @@ function draw(num, sz, color, h, w) {
     var r = parseInt(hex.substring(0,2), 16);
     var g = parseInt(hex.substring(2,4), 16);
     var b = parseInt(hex.substring(4,6), 16);
-    // mainContext.fillStyle = 'rgba(0, 0, 0, ' + this.opacity + ')';
     mainContext.fillStyle = 'rgba(' + r + ', ' + g + ', ' + b + ', ' + this.opacity + ')';
     mainContext.fill();
   };
@@ -84,7 +87,8 @@ function draw(num, sz, color, h, w) {
       var size = Math.random() * szNum;
 
       var circle = new Circle(100, speed, size, randomX, randomY);
-      circles.push(circle);
+
+      circles[i] = circle;
     }
     draw();
   }
