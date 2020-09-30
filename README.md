@@ -1,4 +1,4 @@
-# firefly.js
+# firefly.js - An awesome project
 Pretty firefly particle effect on your webpage using JS / Canvas. [Here's a live demo](http://cszhu.me/firefly).
 
 ### Customization
