@@ -15,7 +15,7 @@ You can customize your firefly particles in several ways by calling the `firefly
   * big
 * #FFFFFF is the color of the fireflies. It takes in hex colors.
 
-Note you must use quotations for it to work :) 
+Note that you must use quotations for it to work :) 
 
 ### How To Use
 Put it in your HTML page with some `<style>` tags.
